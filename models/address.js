@@ -4,10 +4,14 @@ const addressSchema = new mongoose.Schema({
 
 userAddress:{
 
-type:String    
+type:String   
+
 }
 
 
 
 
 })
+const Address = mongoose.model("Address", addressSchema);
+
+module.exports = Address;

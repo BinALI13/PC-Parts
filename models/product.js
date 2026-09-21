@@ -17,4 +17,7 @@ ProductRiview : {
 
 
 })
-module.exports = product ; 
+
+const Product = mongoose.model("Product", productSchema);
+
+module.exports = Product; 
