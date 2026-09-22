@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
 })
 
 
-router.post('/create' , async(req,res)=>{
+router.post('/create' ,isSignedIn, async(req,res)=>{
 const createdProduct = await Product.create({
 
 productName: req.body.productName ,
@@ -23,8 +23,17 @@ console.log(createdProduct)
 res.redirect('/')
 })
 
-router.get('/create', (req,res)=>{
+router.get('/create',isSignedIn, (req,res)=>{
     res.render('product.ejs')
+})
+
+
+
+router.get('/All-Product',isSignedIn , async(req,res)=>{
+
+const AllProduct = await Product.find()
+res.render('all-products.ejs' , {Product: AllProduct})
+
 })
 
 

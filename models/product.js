@@ -5,11 +5,11 @@ const productSchema = new mongoose.Schema({
 productName:{
     type:String
 } , 
-ProductPrice : {
+productPrice : {
     type : Number
 }
 , 
-ProductRiview : {
+productRiview : {
 
     type:String
 }

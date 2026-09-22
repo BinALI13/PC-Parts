@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All products</title>
+</head>
+<body>
+      <%- include('./partials/navbar') %>
+    <h1>All product for You</h1
+        
+        
+        
+
+    <% if (Product.length === 0) { %>
+      <p class="empty">No products yet. Add the first one.</p>
+    <% } else { %>
+      
+        <% Product.forEach(function (Product) { %>
+          
+            <h2><%= Product.productName %></h2>
+            <p><%= Product.productPrice %></p>
+            <p><%= Product.productRiview %></p>
+      
+        <% }) %> 
+        
+           <% } %>
+</body>
+</html>
