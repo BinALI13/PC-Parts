@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>product</title>
+    <title>Edit</title>
 </head>
 <body>
-      <%- include('../partials/navbar') %>
-    
+    <h1>Edit the products</h1>
 
-<form action="/Product/create" method="POST">
+   
+<form action="/products/<%= Product._id %>?_method=PUT" method="POST">
   <label for="productName">Product name</label>
   <input type="text" id="productName" name="productName" required>
 
@@ -19,9 +19,7 @@
   <label for="productRiview">Review</label>
   <textarea id="productRiview" name="productRiview"></textarea>
 
-  <button type="submit">Create product</button>
-
+  <button type="submit">Update products</button>
 </form>
-
 </body>
 </html>

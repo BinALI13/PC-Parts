@@ -24,7 +24,7 @@ res.redirect('/')
 })
 
 router.get('/create',isSignedIn, (req,res)=>{
-    res.render('product.ejs')
+    res.render('products/product.ejs')
 })
 
 
@@ -32,13 +32,29 @@ router.get('/create',isSignedIn, (req,res)=>{
 router.get('/All-Product',isSignedIn , async(req,res)=>{
 
 const AllProduct = await Product.find()
-res.render('all-products.ejs' , {Product: AllProduct})
+res.render('products/all-products.ejs' , {Product: AllProduct})
 
 })
 
 
+router.get('/:id/edit' , isSignedIn , async(req,res)=>{
+    
+const updateProducts = await Product.findById(req.params.id)
+
+    res.render('products/EditProducts.ejs' , {Product : updateProducts} )
+})
 
 
+router.put('/:id',async(req,res)=>{
+    const updatedItem = await Product.findByIdAndUpdate(req.params.id,{
+        productName: req.body.productName ,
+productPrice: req.body.productPrice , 
+productRiview: req.body.productRiview
+
+    },{new:true})
+
+    res.redirect('/All-Product')
+})
 
 
 

@@ -6,24 +6,21 @@
     <title>All products</title>
 </head>
 <body>
-      <%- include('./partials/navbar') %>
-    <h1>All product for You</h1
+      <%- include('../partials/navbar') %>
+    <h1>All product for You</h1>
         
         
-        
-
-    <% if (Product.length === 0) { %>
-      <p class="empty">No products yet. Add the first one.</p>
-    <% } else { %>
-      
-        <% Product.forEach(function (Product) { %>
+        <% for(let oneProduct of Product ) {%>
+  
           
-            <h2><%= Product.productName %></h2>
-            <p><%= Product.productPrice %></p>
-            <p><%= Product.productRiview %></p>
+            <h2><%= oneProduct.productName %></h2>
+            <p><%= oneProduct.productPrice %></p>
+            <p><%= oneProduct.productRiview %></p>
       
-        <% }) %> 
-        
-           <% } %>
+            <a href="/product/<%= oneProduct._id %>/edit">Edit the Products</a>
+        <% } %>
+          
+           
+           
 </body>
 </html>
