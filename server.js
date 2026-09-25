@@ -57,7 +57,6 @@ app.use('/Product' , productsRoutes)
 
 
 
-
 // connect to database and listen on Port 3000
 async function startServer() {
     const PORT = process.env.PORT || 3000;

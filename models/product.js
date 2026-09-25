@@ -13,8 +13,12 @@ productRiview : {
 
     type:String
 }
+,
+owner:{
 
-
+    type:mongoose.Schema.Types.ObjectId, 
+    ref:'user'
+}
 
 })
 
