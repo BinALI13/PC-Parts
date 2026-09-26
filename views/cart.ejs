@@ -6,7 +6,52 @@
     <title>Cart</title>
 </head>
 <body>
-      <%- include('./partials/navbar') %>
-    
+
+    <%- include('./partials/navbar') %>
+
+    <h1>My cart</h1>
+
+    <% if (!cart.items || cart.items.length === 0) { %>
+
+        <p>Your cart is empty </p>
+
+    <% } else { %>
+
+        <% let total = 0; %>
+
+        <% cart.items.forEach(function (item) { %>
+
+            <% const lineTotal = item.product.productPrice * item.quantity; %>
+            <% total += lineTotal; %>
+
+            <p>
+                <%= item.product.productName %> :
+                <%= item.product.productPrice.toFixed(3) %> BHD * <%= item.quantity %>  = <%= lineTotal.toFixed(3) %> BHD
+            </p>
+
+            <form action="/cart/<%= item._id %>?_method=PUT" method="POST">
+                <input
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    value="<%= item.quantity %>"
+                >
+                <button type="submit">Update</button>
+            </form>
+
+            <form action="/cart/<%= item._id %>?_method=DELETE" method="POST">
+                <button type="submit">Remove</button>
+            </form>
+
+        <% }) %>
+
+        <h3>Total: <%= total.toFixed(3) %> BHD</h3>
+
+        <form action="/checkout" method="POST">
+            <button type="submit">Checkout</button>
+        </form>
+
+    <% } %>
+
 </body>
 </html>
