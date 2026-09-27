@@ -18,6 +18,8 @@ const indexController = require("./routes/index.routes.js");
 const productsRoutes = require ('./routes/product.routes.js')
 const cartRoutes = require("./routes/cart.routes.js");
 const storeRoutes = require("./routes/store.routes.js")
+const profileRoutes = require("./routes/profile.routes.js");
+
 // Middleware
 app.use(express.static('public')) // my app will serve all static files from public folder
 app.use(express.urlencoded({ extended: false }));
@@ -57,6 +59,7 @@ app.use('/',indexController)
 app.use('/Product' , productsRoutes)
 app.use("/cart", cartRoutes);
 app.use("/store",storeRoutes);
+app.use("/profile", profileRoutes);
 
 // connect to database and listen on Port 3000
 async function startServer() {

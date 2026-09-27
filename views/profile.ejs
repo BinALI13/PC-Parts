@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>My Profile</title>
 </head>
 
 <body>
@@ -13,29 +13,92 @@
 
     <h1>My Profile</h1>
 
+    <h2>Account Information</h2>
+
     <p>Username: <%= user.username %></p>
+  
 
-    <h3>Address</h3>
 
-    <% if (user.address) { %>
-        <p><%= user.address %></p>
-    <% } else { %>
-        <p>No address added</p>
-    <% } %>
+    <h2> Address</h2>
 
-    <h3>Change Address</h3>
+    <form action="/profile/address" method="POST">
 
-    <form action="/profile/address?_method=PUT" method="POST">
+        <label>Country</label>
+
+        <select name="country" required>
+            <option value="Bahrain">Bahrain</option>
+        </select>
+
+        <br><br>
+
+
+        <label>City / Area</label>
 
         <input
             type="text"
-            name="address"
-            value="<%= user.address || '' %>"
+            name="city"
+            placeholder="Riffa"
+            value="<%= address ? address.city : '' %>"
+            required
         >
+
+        <br><br>
+
+
+        <label>Block</label>
+
+        <input
+            type="text"
+            name="block"
+            placeholder="905"
+            value="<%= address ? address.block : '' %>"
+            required
+        >
+
+        <br><br>
+
+
+        <label>Road</label>
+
+        <input
+            type="text"
+            name="road"
+            placeholder="1234"
+            value="<%= address ? address.road : '' %>"
+            required
+        >
+
+        <br><br>
+
+
+        <label>Building / House</label>
+
+        <input
+            type="text"
+            name="building"
+            placeholder="55"
+            value="<%= address ? address.building : '' %>"
+            required
+        >
+
+        <br><br>
 
         <button type="submit">Save Address</button>
 
     </form>
+
+
+    <% if (address) { %>
+
+        <h2>My Saved Address</h2>
+
+        <p>Country: <%= address.country %></p>
+        <p>City: <%= address.city %></p>
+        <p>Block: <%= address.block %></p>
+        <p>Road: <%= address.road %></p>
+        <p>Building: <%= address.building %></p>
+
+    <% } %>
 
 </body>
 
