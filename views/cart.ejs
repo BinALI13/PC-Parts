@@ -22,7 +22,7 @@
         <% cart.items.forEach(function (item) { %>
 
             <% const lineTotal = item.product.productPrice * item.quantity; %>
-            <% total += lineTotal; %>
+            <% total += lineTotal %>
 
             <p>
                 <%= item.product.productName %> :

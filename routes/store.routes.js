@@ -8,9 +8,7 @@ router.get("/", isSignedIn, async (req, res) => {
   try {
     const products = await Product.find({});
 
-    res.render("products/store.ejs", {
-      products: products
-    });
+    res.render("products/store.ejs", {products: products});
 
   } catch (error) {
     console.log(error);

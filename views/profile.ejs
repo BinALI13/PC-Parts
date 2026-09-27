@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+
+<body>
+
+    <%- include('./partials/navbar') %>
+
+    <h1>My Profile</h1>
+
+    <p>Username: <%= user.username %></p>
+
+    <h3>Address</h3>
+
+    <% if (user.address) { %>
+        <p><%= user.address %></p>
+    <% } else { %>
+        <p>No address added</p>
+    <% } %>
+
+    <h3>Change Address</h3>
+
+    <form action="/profile/address?_method=PUT" method="POST">
+
+        <input
+            type="text"
+            name="address"
+            value="<%= user.address || '' %>"
+        >
+
+        <button type="submit">Save Address</button>
+
+    </form>
+
+</body>
+
+</html>

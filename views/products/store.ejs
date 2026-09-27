@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-    <h1></h1>
+  <h1></h1>
 </body>
-</html><!DOCTYPE html>
+
+</html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,42 +22,43 @@
 </head>
 
 <body>
+  <%- include('../partials/navbar') %>
+    <h1>Store</h1>
 
-  <h1>Store</h1>
+    <% if (products.length===0) { %>
 
-  <% if (products.length === 0) { %>
+      <p>No products available.</p>
 
-    <p>No products available.</p>
+      <% } else { %>
 
-  <% } else { %>
+        <% products.forEach((product)=> { %>
 
-    <% products.forEach((product) => { %>
+          <div>
+            <h2>
+              <%= product.productName %>
+            </h2>
 
-      <div>
-        <h2><%= product.productName %></h2>
+            <p>
+              Price:
+              <%= product.productPrice %> BHD
+            </p>
 
-        <p>
-          Price:
-          <%= product.productPrice %> BHD
-        </p>
+            <p>
+              Review:
+              <%= product.productRiview %>
+            </p>
 
-        <p>
-          Review:
-          <%= product.productRiview %>
-        </p>
+            <form action="/cart/add/<%= product._id %>" method="POST">
+              <button type="submit">
+                Add to Cart
+              </button>
+            </form>
 
-        <form action="/cart/add/<%= product._id %>" method="POST">
-          <button type="submit">
-            Add to Cart
-          </button>
-        </form>
-
-        <hr>
-      </div>
-
-    <% }) %>
-
-  <% } %>
+            <hr>
+          </div>
+          <% }) %>
+            <% } %>
 
 </body>
+
 </html>

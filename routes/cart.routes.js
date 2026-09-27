@@ -2,6 +2,7 @@ const isSignedIn = require("../middleware/is-signed-in");
 const Cart = require("../models/Cart.js");
 const Product = require("../models/product.js");
 const router = require("express").Router();
+const express = require("express");
 
 // Show the cart
 router.get("/", isSignedIn, async (req, res) => {
