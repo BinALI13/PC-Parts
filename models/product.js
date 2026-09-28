@@ -19,6 +19,10 @@ owner:{
     type:mongoose.Schema.Types.ObjectId, 
     ref:'user'
 }
+, 
+image:{
+type:String
+}
 
 })
 

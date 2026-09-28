@@ -1,5 +1,7 @@
 const isSignedIn = require("../middleware/is-signed-in");
+const upload = require("../middleware/upload.js");
    const Product = require('../models/product.js');
+
    
 const router = require("express").Router()
 
@@ -9,12 +11,14 @@ router.get('/',(req,res)=>{
 })
 
 
-router.post('/create' ,isSignedIn, async(req,res)=>{
+router.post('/create' ,isSignedIn,upload.single('image'), async(req,res)=>{
 const createdProduct = await Product.create({
+
 
 productName: req.body.productName ,
 productPrice: req.body.productPrice , 
 productRiview: req.body.productRiview ,
+image:`/uploads/${req.file.filename}`, 
 owner: req.session.user._id
 })
 console.log(createdProduct)

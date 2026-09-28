@@ -10,7 +10,9 @@
       <%- include('../partials/navbar') %>
     
 
-<form action="/Product/create" method="POST">
+<form action="/Product/create" method="POST" enctype="multipart/form-data">
+  <label for="image">image</label>
+  <input type="file" id="image" name="image">
   <label for="productName">Product name</label>
   <input type="text" id="productName" name="productName" required>
 

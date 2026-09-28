@@ -15,10 +15,11 @@
     <% } %>
 
     <% for (let oneProduct of Product) { %>
-        
+            <img src="<%=oneProduct.image%>" alt="<% oneProduct.productName %>">
             <h2><%= oneProduct.productName %></h2>
             <p><%= oneProduct.productPrice %></p>
             <p><%= oneProduct.productRiview %></p>
+
 
             <a href="/Product/<%= oneProduct._id %>/edit">Edit the Products</a>
             <form action="/Product/<%= oneProduct._id %>?_method=DELETE" method="POST">
