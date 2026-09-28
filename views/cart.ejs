@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -21,22 +22,16 @@
 
         <% cart.items.forEach(function (item) { %>
 
-            <% const lineTotal = item.product.productPrice * item.quantity; %>
+            <% const lineTotal = item.product.productPrice %>
             <% total += lineTotal %>
 
             <p>
                 <%= item.product.productName %> :
-                <%= item.product.productPrice.toFixed(3) %> BHD * <%= item.quantity %>  = <%= lineTotal.toFixed(3) %> BHD
+                <%= item.product.productPrice.toFixed(3) %> BHD  %> 
             </p>
 
-            <form action="/cart/<%= item._id %>?_method=PUT" method="POST">
-                <input
-                    type="number"
-                    name="quantity"
-                    min="1"
-                    value="<%= item.quantity %>"
-                >
-                <button type="submit">Update</button>
+           
+
             </form>
 
             <form action="/cart/<%= item._id %>?_method=DELETE" method="POST">

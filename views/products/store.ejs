@@ -2,62 +2,84 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Store</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <h1></h1>
-</body>
 
-</html>
-<!DOCTYPE html>
-<html lang="en">
+    <%- include('../partials/navbar') %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Store</title>
-</head>
+    <div class="container mt-5">
 
-<body>
-  <%- include('../partials/navbar') %>
-    <h1>Store</h1>
+        <h1 class="text-center mb-4">Store</h1>
 
-    <% if (products.length===0) { %>
+        <% if (products.length === 0) { %>
 
-      <p>No products available.</p>
+            <p class="text-center">No products available.</p>
 
-      <% } else { %>
+        <% } else { %>
 
-        <% products.forEach((product)=> { %>
+            <div class="row">
 
-          <div>
-            <h2>
-              <%= product.productName %>
-            </h2>
+                <% products.forEach((product) => { %>
 
-            <p>
-              Price:
-              <%= product.productPrice %> BHD
-            </p>
+                    <div class="col-md-4 mb-4">
 
-            <p>
-              Review:
-              <%= product.productRiview %>
-            </p>
+                        <div class="card h-100 shadow-sm">
 
-            <form action="/cart/add/<%= product._id %>" method="POST">
-              <button type="submit">
-                Add to Cart
-              </button>
-            </form>
+                            <div class="card-body">
 
-            <hr>
-          </div>
-          <% }) %>
-            <% } %>
+                                <h2 class="card-title">
+                                    <%= product.productName %>
+                                </h2>
+
+                                <p class="card-text">
+                                    Price:
+                                    <strong>
+                                        <%= product.productPrice %> BHD
+                                    </strong>
+                                </p>
+
+                                <p class="card-text">
+                                    Review:
+                                    <%= product.productRiview %>
+                                </p>
+
+                                <form action="/cart/add/<%= product._id %>" method="POST">
+
+                                    <button type="submit" class="btn btn-primary">
+                                        Add to Cart
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
 

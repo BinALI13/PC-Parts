@@ -4,101 +4,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My Profile</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
     <%- include('./partials/navbar') %>
 
-    <h1>My Profile</h1>
+    <div class="profile">
 
-    <h2>Account Information</h2>
+        <h1>My Profile</h1>
 
-    <p>Username: <%= user.username %></p>
-  
+        <h2>Account Information</h2>
 
+        <p><strong>Username:</strong> <%= user.username %></p>
+      
 
-    <h2> Address</h2>
+        <h2>Delivery Address</h2>
 
-    <form action="/profile/address" method="POST">
+        <form action="/profile/address" method="POST">
 
-        <label>Country</label>
+            <label>Country</label>
 
-        <select name="country" required>
-            <option value="Bahrain">Bahrain</option>
-        </select>
-
-        <br><br>
-
-
-        <label>City / Area</label>
-
-        <input
-            type="text"
-            name="city"
-            placeholder="Riffa"
-            value="<%= address ? address.city : '' %>"
-            required
-        >
-
-        <br><br>
+            <select name="country" required>
+                <option value="Bahrain">Bahrain</option>
+            </select>
 
 
-        <label>Block</label>
+            <label>City / Area</label>
 
-        <input
-            type="text"
-            name="block"
-            placeholder="905"
-            value="<%= address ? address.block : '' %>"
-            required
-        >
-
-        <br><br>
+            <input
+                type="text"
+                name="city"
+                placeholder="Manama"
+                value="<%= address ? address.city : '' %>"
+                required
+            >
 
 
-        <label>Road</label>
+            <label>Block</label>
 
-        <input
-            type="text"
-            name="road"
-            placeholder="1234"
-            value="<%= address ? address.road : '' %>"
-            required
-        >
-
-        <br><br>
+            <input
+                type="text"
+                name="block"
+                placeholder="777"
+                value="<%= address ? address.block : '' %>"
+                required
+            >
 
 
-        <label>Building / House</label>
+            <label>Road</label>
 
-        <input
-            type="text"
-            name="building"
-            placeholder="55"
-            value="<%= address ? address.building : '' %>"
-            required
-        >
-
-        <br><br>
-
-        <button type="submit">Save Address</button>
-
-    </form>
+            <input
+                type="text"
+                name="road"
+                placeholder="1034"
+                value="<%= address ? address.road : '' %>"
+                required
+            >
 
 
-    <% if (address) { %>
+            <label>Building / House</label>
 
-        <h2>My Saved Address</h2>
+            <input
+                type="text"
+                name="building"
+                placeholder="345"
+                value="<%= address ? address.building : '' %>"
+                required
+            >
 
-        <p>Country: <%= address.country %></p>
-        <p>City: <%= address.city %></p>
-        <p>Block: <%= address.block %></p>
-        <p>Road: <%= address.road %></p>
-        <p>Building: <%= address.building %></p>
 
-    <% } %>
+            <button type="submit">Save Address</button>
+            <button type ="submit">Delete Address</button>
+
+        </form>
+
+
+        <% if (address) { %>
+
+            <div class="saved-address">
+
+                <h2>My Saved Address</h2>
+
+                <table>
+                    <tr>
+                        <th>City</th>
+                        <td><%= address.city %></td>
+                    </tr>
+
+                    <tr>
+                        <th>Block</th>
+                        <td><%= address.block %></td>
+                    </tr>
+
+                    <tr>
+                        <th>Road</th>
+                        <td><%= address.road %></td>
+                    </tr>
+
+                    <tr>
+                        <th>Building</th>
+                        <td><%= address.building %></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        <% } %>
+
+    </div>
 
 </body>
 

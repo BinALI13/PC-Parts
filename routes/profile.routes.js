@@ -51,5 +51,10 @@ router.post("/address", isSignedIn, async (req, res) => {
     res.redirect("/profile");
 });
 
+router.delete('/profile' , isSignedIn , async (req,res)=>{
 
+
+
+    
+})
 module.exports = router;
