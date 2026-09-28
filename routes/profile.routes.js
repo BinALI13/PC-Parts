@@ -51,10 +51,12 @@ router.post("/address", isSignedIn, async (req, res) => {
     res.redirect("/profile");
 });
 
-router.delete('/profile' , isSignedIn , async (req,res)=>{
+router.delete("/address", isSignedIn, async (req, res) => {
 
+    await Address.findOneAndDelete({
+        owner: req.session.user._id
+    });
 
-
-    
-})
+    res.redirect("/profile");
+});
 module.exports = router;
