@@ -1,188 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Profile</title>
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
 
-    <%- include('./partials/navbar') %>
+<%- include('./partials/navbar') %>
 
-    <div class="container mt-5 mb-5">
+<div class="page-container">
+  <h1 class="page-title">My Profile</h1>
+  <p class="page-subtitle">Manage your account and delivery address</p>
 
-        <div class="card shadow p-4">
+  <div class="profile-box">
+    <h2>Account Information</h2>
+    <p><strong>Username:</strong> <%= user.username %></p>
 
-            <h1 class="text-center mb-4">My Profile</h1>
+    <hr>
 
-            <h2>Account Information</h2>
+    <h2 class="mt-4">Address</h2>
 
-            <p>
-                <strong>Username:</strong>
-                <%= user.username %>
-            </p>
+    <form action="/profile/address" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Country</label>
+        <select name="country" class="form-select" required>
+          <option value="Bahrain">Bahrain</option>
+        </select>
+      </div>
 
-            <hr>
+      <div class="mb-3">
+        <label class="form-label">City / Area</label>
+        <input type="text" name="city" class="form-control" placeholder="Manama" value="<%= address ? address.city : '' %>" required>
+      </div>
 
-            <h2>Address</h2>
+      <div class="mb-3">
+        <label class="form-label">Block</label>
+        <input type="text" name="block" class="form-control" placeholder="777" value="<%= address ? address.block : '' %>" required>
+      </div>
 
-            <form action="/profile/address" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Road</label>
+        <input type="text" name="road" class="form-control" placeholder="1034" value="<%= address ? address.road : '' %>" required>
+      </div>
 
-                <div class="mb-3">
+      <div class="mb-3">
+        <label class="form-label">Building / House</label>
+        <input type="text" name="building" class="form-control" placeholder="345" value="<%= address ? address.building : '' %>" required>
+      </div>
 
-                    <label class="form-label">Country</label>
+      <button type="submit" class="btn btn-main">
+        <i class="bi bi-floppy"></i> Save Address
+      </button>
+    </form>
 
-                    <select name="country" class="form-select" required>
+    <% if (address) { %>
+      <hr class="my-4">
 
-                        <option value="Bahrain">
-                            Bahrain
-                        </option>
+      <h2>Saved Address</h2>
 
-                    </select>
+      <div class="table-responsive">
+        <table class="table table-bordered address-table">
+          <tbody>
+            <tr>
+              <th>Country</th>
+              <td><%= address.country %></td>
+            </tr>
+            <tr>
+              <th>City / Area</th>
+              <td><%= address.city %></td>
+            </tr>
+            <tr>
+              <th>Block</th>
+              <td><%= address.block %></td>
+            </tr>
+            <tr>
+              <th>Road</th>
+              <td><%= address.road %></td>
+            </tr>
+            <tr>
+              <th>Building / House</th>
+              <td><%= address.building %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-                </div>
-
-
-                <div class="mb-3">
-
-                    <label class="form-label">City / Area</label>
-
-                    <input
-                        type="text"
-                        name="city"
-                        class="form-control"
-                        placeholder="EX:Manama"
-                        value="<%= address ? address.city : '' %>"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="mb-3">
-
-                    <label class="form-label">Block</label>
-
-                    <input
-                        type="text"
-                        name="block"
-                        class="form-control"
-                        placeholder="EX:777"
-                        value="<%= address ? address.block : '' %>"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="mb-3">
-
-                    <label class="form-label">Road</label>
-
-                    <input
-                        type="text"
-                        name="road"
-                        class="form-control"
-                        placeholder="EX:1034"
-                        value="<%= address ? address.road : '' %>"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="mb-3">
-
-                    <label class="form-label">Building / House</label>
-
-                    <input
-                        type="text"
-                        name="building"
-                        class="form-control"
-                        placeholder="EX:345"
-                        value="<%= address ? address.building : '' %>"
-                        required
-                    >
-
-                </div>
-
-
-                <button type="submit" class="btn btn-primary">
-                    Save Address
-                </button>
-
-            </form>
-
-
-            <% if (address) { %>
-
-                <hr class="mt-4">
-
-                <h2 class="mb-3">My Saved Address</h2>
-
-                <table class="table table-bordered">
-
-                    <tbody>
-
-                        <tr>
-                            <th>Country</th>
-                            <td><%= address.country %></td>
-                        </tr>
-
-                        <tr>
-                            <th>City / Area</th>
-                            <td><%= address.city %></td>
-                        </tr>
-
-                        <tr>
-                            <th>Block</th>
-                            <td><%= address.block %></td>
-                        </tr>
-
-                        <tr>
-                            <th>Road</th>
-                            <td><%= address.road %></td>
-                        </tr>
-
-                        <tr>
-                            <th>Building / House</th>
-                            <td><%= address.building %></td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-
-                <form action="/profile/address?_method=DELETE" method="POST">
-
-                    <button type="submit" class="btn btn-danger">
-                        Delete Address
-                    </button>
-
-                </form>
-
-            <% } %>
-
-        </div>
-
-    </div>
-
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-    </script>
+      <form action="/profile/address?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-outline-danger">
+          <i class="bi bi-trash"></i> Delete Address
+        </button>
+      </form>
+    <% } %>
+  </div>
+</div>
 
 </body>
-
 </html>

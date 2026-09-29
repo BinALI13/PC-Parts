@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Market</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-      <%- include('./partials/navbar') %>
-    
 
-    <h1>Welcome to my Website</h1>
-    <p>Pc products Website For Add your Product </p>
+<%- include('./partials/navbar') %>
 
+<div class="page-container">
+  <div class="hero">
+    <h1>PC Market</h1>
+    <p>Buy and sell PC products in one simple marketplace.</p>
 
-    <a href="/store">
-    <button>Store</button>
-</a>
+    <a href="/store" class="btn btn-main btn-lg">
+      <i class="bi bi-shop"></i> Browse Store
+    </a>
 
-
+    <% if (user) { %>
+      <a href="/Product/create" class="btn btn-outline-dark btn-lg ms-2">
+        <i class="bi bi-plus-circle"></i> Sell Product
+      </a>
+    <% } %>
+  </div>
+</div>
 
 </body>
 </html>

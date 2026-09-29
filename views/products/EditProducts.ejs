@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-      <%- include('../partials/navbar') %>
 
-    <h1>Edit the products</h1>
+<%- include('../partials/navbar') %>
 
-   
-<form action="/Product/<%= Product._id %>?_method=PUT" method="POST"  enctype="multipart/form-data">
- 
-<label for="image">image</label>
-  <input type="file" id="image" name="image">
+<div class="form-box">
+  <h1>Edit Product</h1>
 
-  <label for="productName">Product name</label>
-  <input value="<%= Product.productName %>" type="text" id="productName" name="productName" required>
+  <form action="/Product/<%= Product._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="image" class="form-label">Change Image</label>
+      <input type="file" id="image" name="image" class="form-control">
+    </div>
 
-  <label for="productPrice">Price</label>
-  <input value="<%= Product.productPrice %>" type="number" id="productPrice" name="productPrice" min="0" step="0.01" required>
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input value="<%= Product.productName %>" type="text" id="productName" name="productName" class="form-control" required>
+    </div>
 
-  <label for="productRiview">Review</label>
-  <textarea value="<%= Product.productRiview %> "id="productRiview" name="productRiview"></textarea>
+    <div class="mb-3">
+      <label for="productPrice" class="form-label">Price</label>
+      <div class="input-group">
+        <input value="<%= Product.productPrice %>" type="number" id="productPrice" name="productPrice" min="0" step="0.001" class="form-control" required>
+        <span class="input-group-text">BHD</span>
+      </div>
+    </div>
 
-  <button type="submit">Update products</button>
-</form>
+    <div class="mb-3">
+      <label for="productRiview" class="form-label">Description</label>
+      <textarea id="productRiview" name="productRiview" class="form-control" rows="4"><%= Product.productRiview %></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-main w-100">
+      <i class="bi bi-check-circle"></i> Update Product
+    </button>
+  </form>
+</div>
+
 </body>
 </html>
