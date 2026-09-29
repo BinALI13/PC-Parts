@@ -1,79 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Cart</title>
-  <link rel="stylesheet" href="/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Cart</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
 <%- include('./partials/navbar') %>
 
 <div class="page-container">
-  <h1 class="page-title">My Cart</h1>
-  <p class="page-subtitle">Review your products before checkout</p>
+<h1 class="page-title">My Cart</h1>
+<p class="page-subtitle">Review your products before checkout</p>
 
-  <% const validItems = cart.items ? cart.items.filter(item => item.product) : []; %>
+<% const validItems = cart.items ? cart.items.filter(item => item.product) : []; %>
 
-  <% if (validItems.length === 0) { %>
-    <div class="empty-box">
-      <i class="bi bi-cart-x fs-1"></i>
-      <p class="mt-3">Your cart is empty</p>
-      <a href="/store" class="btn btn-main">Go to Store</a>
-    </div>
-  <% } else { %>
+<% if (validItems.length === 0) { %>
+<div class="empty-box">
+<i class="bi bi-cart-x fs-1"></i>
+<p class="mt-3">Your cart is empty</p>
+<a href="/store" class="btn btn-main">Go to Store</a>
+</div>
 
-    <% let total = 0; %>
+<% } else { %>
 
-    <div class="row g-4">
-      <div class="col-lg-8">
+<% let total = 0; %>
 
-        <% validItems.forEach(function(item) { %>
-          <% total += item.product.productPrice; %>
+<div class="row g-4">
+<div class="col-lg-8">
 
-          <div class="cart-item">
-            <div class="d-flex justify-content-between align-items-center">
+<% validItems.forEach(function(item) { %>
+<% total += item.product.productPrice; %>
 
-              <div>
-                <h5><%= item.product.productName %></h5>
-                <p class="cart-price mb-0">
-                  <%= item.product.productPrice %> BHD
-                </p>
-              </div>
+<div class="cart-item">
+<div class="d-flex justify-content-between align-items-center">
 
-              <form action="/cart/<%= item._id %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-outline-danger">
-                  <i class="bi bi-trash"></i> Remove
-                </button>
-              </form>
+<div>
+<h5><%= item.product.productName %></h5>
+<p class="cart-price mb-0">
+<%= item.product.productPrice %> BHD
+</p>
+</div>
 
-            </div>
-          </div>
-        <% }) %>
+<form action="/cart/<%= item._id %>?_method=DELETE" method="POST">
+<button type="submit" class="btn btn-outline-danger">
+<i class="bi bi-trash"></i> Remove
+</button>
+</form>
 
-      </div>
+</div>
+</div>
 
-      <div class="col-lg-4">
-        <div class="cart-summary">
-          <h3>Order Summary</h3>
-          <hr>
+<% }) %>
 
-          <div class="d-flex justify-content-between">
-            <span>Total</span>
-            <strong><%= total %> BHD</strong>
-          </div>
+</div>
 
-          <form action="/checkout" method="POST">
-            <button type="submit" class="btn btn-gold w-100 mt-4">
-              <i class="bi bi-credit-card"></i> Checkout
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
+<div class="col-lg-4">
+<div class="cart-summary">
+<h3>Order Summary</h3>
+<hr>
 
-  <% } %>
+<div class="d-flex justify-content-between">
+<span>Total</span>
+<strong><%= total %> BHD</strong>
+</div>
+
+<form action="/cart/checkout" method="POST">
+<button type="submit" class="btn btn-gold w-100 mt-4">
+<i class="bi bi-credit-card"></i> Checkout
+</button>
+</form>
+
+</div>
+</div>
+</div>
+
+<% } %>
 </div>
 
 </body>
