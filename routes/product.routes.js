@@ -47,7 +47,7 @@ router.get("/:id/edit", isSignedIn, async (req, res) => {
 
 
 
-router.put('/:id', isSignedIn, async (req, res) => {
+router.put('/:id', isSignedIn,upload.single("image"), async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product.owner || !product.owner.equals(req.session.user._id)) {
         return res.redirect('/Product/All-Product');
@@ -56,7 +56,8 @@ router.put('/:id', isSignedIn, async (req, res) => {
     await Product.findByIdAndUpdate(req.params.id, {
         productName: req.body.productName,
         productPrice: req.body.productPrice,
-        productRiview: req.body.productRiview
+        productRiview: req.body.productRiview,
+        image:`/uploads/${req.file.filename}`
     });
 
     res.redirect('/Product/All-Product');
@@ -72,7 +73,7 @@ router.delete('/:id', isSignedIn, async (req, res) => {
     res.redirect('/Product/All-Product');
 })
 
-// Store page - show all products
+
 router.get("products/store", isSignedIn, async (req, res) => {
   try {
     const products = await Product.find({});

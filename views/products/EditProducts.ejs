@@ -12,7 +12,11 @@
     <h1>Edit the products</h1>
 
    
-<form action="/Product/<%= Product._id %>?_method=PUT" method="POST">
+<form action="/Product/<%= Product._id %>?_method=PUT" method="POST"  enctype="multipart/form-data">
+ 
+<label for="image">image</label>
+  <input type="file" id="image" name="image">
+
   <label for="productName">Product name</label>
   <input value="<%= Product.productName %>" type="text" id="productName" name="productName" required>
 
