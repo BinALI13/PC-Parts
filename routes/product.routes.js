@@ -57,7 +57,7 @@ router.put('/:id', isSignedIn,upload.single("image"), async (req, res) => {
         productName: req.body.productName,
         productPrice: req.body.productPrice,
         productRiview: req.body.productRiview,
-        image:`/uploads/${req.file.filename}`
+        image: req.file? `/uploads/${req.file.filename}` : Product.image
     });
 
     res.redirect('/Product/All-Product');

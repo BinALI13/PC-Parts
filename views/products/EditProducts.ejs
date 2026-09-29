@@ -14,7 +14,9 @@
   <h1>Edit Product</h1>
 
   <form action="/Product/<%= Product._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    
     <div class="mb-3">
+
       <label for="image" class="form-label">Change Image</label>
       <input type="file" id="image" name="image" class="form-control">
     </div>
