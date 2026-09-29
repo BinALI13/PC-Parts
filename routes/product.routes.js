@@ -1,6 +1,6 @@
 const isSignedIn = require("../middleware/is-signed-in");
 const upload = require("../middleware/upload.js");
-   const Product = require('../models/product.js');
+   const Product = require('../models/Product.js');
 
    
 const router = require("express").Router()
